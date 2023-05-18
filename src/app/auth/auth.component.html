@@ -1,0 +1,23 @@
+<h2>Authentification</h2>
+<div *ngIf="authStatus">
+	<p>
+		<!--Date d'authentification : {{ lastUpdate | async | date: 'medium' | lowercase }}
+		<br/> -->
+		Date d'authentification : {{ lastUp | async | date: 'medium' | lowercase }}
+		<br/>
+		Temps de authentification : {{ this.minute < 10 ? "0"+this.minute : this.minute }}:{{ this.seconde  < 10 ? "0"+this.seconde : this.seconde }}
+		<!--<br/>
+		Temps de authentification 2 : {{ this.minute2 < 10 ? "0"+this.minute2 : this.minute2 }}:{{ this.seconde2  < 10 ? "0"+this.seconde2 : this.seconde2 }}
+	-->
+	</p>
+</div>
+<button class="btn btn-success" 
+	*ngIf="!authStatus" 
+	(click)="onSignIn()">Se connecter
+</button>
+<button class="btn btn-danger" 
+	*ngIf="authStatus" 
+	(click)="onSignOut()">Se déconnecter
+</button>
+
+

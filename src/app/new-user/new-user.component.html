@@ -1,0 +1,52 @@
+<div class="col-sm-8 col-sm-offset-2">
+	<form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+		<div class="form-group">
+			<label for="firstName">Prénom</label>
+			<input type="text" id="firstName" class="form-control" formControlName="firstName">
+		</div>
+		<div class="form-group">
+			<label for="lastName">Nom</label>
+			<input type="text" id="lastName" class="form-control" formControlName="lastName">
+		</div>
+		<div class="form-group">
+			<label for="email">Adresse e-mail</label>
+			<input type="text" id="email" class="form-control" formControlName="email">
+		</div>
+		<div class="form-group" style="display: flex; justify-content: center; align-items: baseline;">
+			<label for="colorPreference">Quelle couleur préférez-vous ?</label>
+			<!-- Liste couleur enum  -->
+			<div class="col-lg-6">
+				<select id="listeColor" class="form-control" formControlName="colorPreference">
+					<option [ngValue]="color" *ngFor="let color of listColor">
+						{{ color }}
+					</option>
+				</select>
+			</div>
+		</div>
+		<div formArrayName="hobbies">
+			<h3>Vos hobbies</h3>
+			<div class="form-group" *ngFor="let hobbyControl of getHobbies().controls; let i = index">
+				<div class="input-group"
+					style="display: flex; align-items: center;">
+					 <span>{{ i }}</span>
+					<input type="text" class="form-control" [formControlName]="i">
+					<!-- Bouton de suppression d'un input -->
+					<span class="input-group-addon">
+						<button type="button" class="close" aria-label="Close"
+							(click)="closeInputHobby(i);">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</span>
+				</div>
+			</div>
+			<button type="button" class="btn btn-success" (click)="onAddHobby()">Ajouter un hobby</button>
+		</div>
+		<div style="display: flex; justify-content: space-evenly;">
+			<button type="submit" 
+				 class="btn btn-primary"
+				[disabled]="userForm.invalid">Soumettre</button>
+				
+			<a class="btn btn-primary" routerLink="/users">Retour utilisateur</a>
+		</div>
+	</form>
+</div>

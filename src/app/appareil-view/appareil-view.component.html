@@ -1,0 +1,27 @@
+<h2>Mes appareils</h2>
+<p>Ceci est dans AppareilViewComponent</p>
+<p>Mis à jour : {{ lastUpdate | async | date: 'medium' | uppercase }}</p>
+<ul class="list-group">
+	<!--<app-appareil appareilName="Machine à laver"></app-appareil>
+	<app-appareil [appareilName] = "appareilOne"
+		[appareilStatus] = "appareilStatus1"></app-appareil>
+
+	<app-appareil  *ngFor="let appareil of appareils"
+		[appareilName]="appareil.name"
+		[appareilStatus]="appareil.status"></app-appareil> -->
+	<app-appareil  *ngFor="let appareil of appareils; let i = index"
+		[appareilName]="appareil.name"
+		[appareilStatus]="appareil.status"
+		[index]="i"
+		[id]="appareil.id"></app-appareil>
+
+</ul>
+<button [ngClass]="{'btn btn-sm btn': true,
+	'btn btn-sm btn-success': isOnAllumer === false || nbrAppareilOff === 3,
+	'btn btn-sm btn-danger': isOnAllumer === true || nbrAppareilOn === 3}"
+	(click) = "onAllumerEteindre()" >
+		{{ titleBtnAllumer }} - ON : {{ getNbrAppareilOn() }} - OFF : {{ getNbrAppareilOff() }}
+</button>
+
+	
+<!--[disabled] = "! isAuth" -->

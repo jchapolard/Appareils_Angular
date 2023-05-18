@@ -1,0 +1,18 @@
+<!-- Template Utilisateurs -->
+<ul class="list-group">
+
+	<app-user *ngFor="let user of users; let i = index"
+		[userId]="user.id"
+		[userFirstName]="user.firstName"
+		[userLastName]="user.lastName"
+		[userEmail]="user.email"
+		[userColorPreference]="user.colorPreference"
+		[userHobbies]="user.hobbies ? user.hobbies.join(', ') : '' "
+		[index]="i"
+		[id]="user.id"></app-user>
+	<!-- Utilisez l'opérateur ?? pour fournir une valeur par défaut -->
+	<!-- Utilisez la méthode join() pour convertir le tableau en une seule chaîne -->
+	<!-- Utilisez un opérateur ternaire pour vérifier si user.hobbies est défini -->
+</ul>
+<br/>
+<a class="btn btn-primary" routerLink="/new-user">Nouvel utilisateur</a>

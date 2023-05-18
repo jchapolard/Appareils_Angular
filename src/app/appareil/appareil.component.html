@@ -1,0 +1,48 @@
+<li class="list-group-item">
+  <!--<h4>Ceci est dans AppareilComponent</h4><br/> -->
+  
+  <li [ngClass]="{'list-group-item': true,
+                'list-group-item-success': appareilStatus === 'on',
+                'list-group-item-danger': appareilStatus === 'off'}">
+	
+	<div style="display: flex">
+		<div style="width:20px;height:20px;background-color:red;" 
+		   *ngIf="appareilStatus === 'off'"></div>
+		<div style="width:20px;height:20px;background-color:green;" 
+		   *ngIf="appareilStatus === 'on'"></div>
+		<div style="width:20px;height:20px;background-color:orange;" 
+		   *ngIf="appareilStatus == ''"></div>
+		 
+		<!-- l'interpolation  : émettre des données issues de votre code TypeScript -->
+		<h5 [ngStyle]="{color: getColor()}"
+			style="text-align: center; width: 100%;"
+			>Appareil : {{ appareilName }} - Status : {{ getStatus() }}</h5>
+			<!-- - ON : {{ getNbrAppareilOn() }} - OFF : {{ getNbrAppareilOff() }}</h5> -->
+			<a [routerLink]="[id]">Détail</a>
+	</div>
+	
+	<!-- two-way binding : Formulaire : déclarer et de récupérer le contenu des champs -->
+	<div *ngIf="editName">
+		<input type="text" class="form-control" [(ngModel)] = "appareilName" >
+	</div>
+	<div *ngIf="! editName">
+		<input type="text" disabled="true" class="form-control" [(ngModel)] = "appareilName" >
+	</div>
+	
+	
+	<input type="text" class="form-control" [(ngModel)] = "appareilStatus" >
+
+	<div style="display: flex; justify-content: space-between; align-items: baseline;">
+		<div style="width: 100px;"></div>
+		<button 
+			[ngClass]="{'btn btn-sm btn': true,
+			'btn btn-sm btn-success': appareilStatus === 'on',
+			'btn btn-sm btn-danger': appareilStatus === 'off'}"
+				(click)="onSwitch()">{{ titleBtnAllumerAppareil }} {{ appareilName }}</button>
+				
+		<button	type="button" 
+				class="btn btn-link"
+				(click)="onEditNameAppareil()">{{ titleEditionName }}</button>
+	</div>
+		  
+</li>

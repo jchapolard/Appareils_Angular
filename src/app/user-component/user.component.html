@@ -1,0 +1,30 @@
+<li class="list-group-item">
+	<div *ngIf="! editUser">
+			<p>-- {{ userId }} --</p>
+			<h3>{{ userFirstName }} {{ userLastName }}</h3>
+			<p>{{ userEmail }}</p>
+			<p>Cette persone préfère la couleur  {{ userColorPreference }}</p>
+			<!--<p *ngIf="userHobbies && userHobbies.length > 0">
+				Cette personne a des hobbies :
+				<span *ngFor="let hobby of userHobbies">{{ hobby }} - </span>
+			</p> -->
+			
+			<span> Cette personne a des hobbies : {{ userHobbies }} - </span>
+
+		</div>
+		<div *ngIf="editUser">
+			<input type="text" class="form-control" [(ngModel)] = "userId" >
+			<input type="text" class="form-control" [(ngModel)] = "userFirstName" >
+			<input type="text" class="form-control" [(ngModel)] = "userLastName" >
+			<input type="text" class="form-control" [(ngModel)] = "userEmail" >
+			<input type="text" class="form-control" [(ngModel)] = "userColorPreference" >
+			<input type="text" class="form-control" [(ngModel)] = "userHobbies" >
+		</div>
+		
+		<button	type="button" 
+				class="btn btn-link"
+				(click)="onEditUser()">{{ titleEditionUser }}</button>
+				
+	</li>
+
+
